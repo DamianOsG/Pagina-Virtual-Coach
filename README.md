@@ -9,4 +9,5 @@ El video de como es la pagina:
 https://github.com/DamianOsG/Pagina-Virtual-Coach/assets/88914819/72cccabb-22a7-4628-8228-2c8fcef7f9ec
 https://github.com/DamianOsG/Pagina-Virtual-Coach/assets/88914819/0b2d1bdc-daf4-45e6-8e88-a5bf76c137ae
 https://github.com/DamianOsG/Pagina-Virtual-Coach/assets/88914819/e9bf0b5b-3cb0-4b09-bd60-48ad4fe43dff
+
 Si ven el error es por el uso en la presentación del OpenAi excedio la quota.
