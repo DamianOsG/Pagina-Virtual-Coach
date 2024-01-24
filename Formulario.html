@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Salud</title>
+    <link rel="stylesheet" href="css/Formulario.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="/assets/logo.jpeg" alt="Logo"></a>
+            </div>
+            <ul>
+                <li><a href="Nosotros.html">Nosotros</a></li>
+                <li><a href="Cuenta.html">Cuenta</a></li>
+                <li><a href="Dieta.html">Dietas</a></li>
+                <li><a href="Rutina.html">Rutinas</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="video-background">
+        <video autoplay loop muted>
+            <source src="assets/Reg_4.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+    <div class="form-container">
+        <form id="health-form">
+            <h2 class="centered-title">Datos de Usuario</h2>
+            <label for="weight">Peso (kg):</label>
+            <input type="number" id="weight" required>
+
+            <label for="height">Altura (cm):</label>
+            <input type="number" id="height" required>
+
+            <div id="imc-result" style="display: none;">
+                <p>Tu IMC es: <span id="imc-value"></span></p>
+            </div>
+
+            <button type="button" id="continue" style="display: none;">Seguir</button>
+        </form>
+
+        <div id="carbs-selection-container" style="display: none;">
+            <h2 class="centered-title">Selecciona tus Carbohidratos Preferidos</h2>
+            <div id="carbs-selection" class="carbs-grid">
+                <div class="carb-card" data-carb="arroz">
+                    <i class='bx bxs-bowl-rice'></i>
+                    <span>Arroz</span>
+                </div>
+                <div class="carb-card" data-carb="frutas">
+                    <iconify-icon icon="bxs:pear"></iconify-icon>
+                    <span>Frutas</span>
+                </div>
+                <div class="carb-card" data-carb="bolillo">
+                    <i class='bx bxs-baguette'></i>
+                    <span>Panes</span>
+                </div>
+                <div class="carb-card" data-carb="sopas">
+                    <i class='bx bxs-bowl-hot'></i>
+                    <span>Sopas</span>
+                </div>
+                <div class="carb-card" data-carb="verduras">
+                    <iconify-icon icon="bx:ball"></iconify-icon>
+                    <span>Verduras</span>
+                </div>
+                <div class="carb-card" data-carb="tortillas">
+                    <iconify-icon icon="bxs:circle"></iconify-icon>
+                    <span>Tortillas</span>
+                </div>
+                <!-- Añade aquí tus íconos de carbohidratos -->
+            </div>
+            <button type="button" id="submit-carbs">Continuar</button>
+        </div>
+
+        <div id="proteins-selection-container" style="display: none;">
+            <h2 class="centered-title">Selecciona tus Proteínas Preferidas</h2>
+            <div id="proteins-selection" class="proteins-grid">
+                <!-- Ejemplos de ítems de proteínas -->
+                <div class="protein-card" data-protein="leche">
+                    <iconify-icon icon="bxs:cheese"></iconify-icon>
+                    <span>Lacteos</span>
+                </div>
+                <div class="protein-card" data-protein="carne">
+                    <iconify-icon icon="bxs:dish"></iconify-icon>
+                    <span>Carnes</span>
+                </div>
+                <div class="protein-card" data-protein="pescado">
+                    <iconify-icon icon="bxs:dish"></iconify-icon>
+                    <span>Pescados</span>
+                </div>
+                <div class="protein-card" data-protein="pollo">
+                    <iconify-icon icon="bxs:dish"></iconify-icon>
+                    <span>Pollos</span>
+                </div>
+                <div class="protein-card" data-protein="huevos">
+                    <iconify-icon icon="bxs:dish"></iconify-icon>
+                    <span>Huevos</span>
+                </div>
+                <div class="protein-card" data-protein="legumbres">
+                    <iconify-icon icon="bxs:dish"></iconify-icon>
+                    <span>Legumbres</span>
+                </div>
+                <!-- Añade aquí tus íconos de proteínas -->
+            </div>
+            <button type="button" id="submit-proteins">Continuar</button>
+        </div>
+        
+        <!-- Selección de objetivo de peso -->
+        <div id="weight-goal-container" style="display: none;">
+            <h2 class="centered-title">Selecciona tu Objetivo de Peso</h2>
+            <select id="weight-goal">
+                <option value="lose">Bajar de Peso</option>
+                <option value="maintain">Mantenerse</option>
+                <option value="gain">Subir de Peso</option>
+            </select>
+            <button type="button" id="submit-weight-goal">Continuar</button>
+        </div>
+
+        <!-- Selección de género -->
+        <div id="gender-container" style="display: none;">
+            <h2 class="centered-title">Selecciona tu Género</h2>
+            <select id="gender">
+                <option value="male">Hombre</option>
+                <option value="female">Mujer</option>
+            </select>
+            <button type="button" id="submit-gender">Continuar</button>
+        </div>
+
+        <!-- Selección de edad -->
+        <div id="age-container" style="display: none;">
+            <h2 class="centered-title">Ingresa tu Edad</h2>
+            <input type="number" id="age" required>
+            <button type="button" id="submit-age">Finalizar</button>
+        </div>
+
+
+    </div>
+    <footer>
+        <p>Políticas de privacidad | Términos y condiciones</p>
+    </footer>
+    <script src="js/Formulario.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</body>
+</html>

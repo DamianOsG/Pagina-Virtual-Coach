@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Registro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Iniciar Sesion</title>
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay loop muted>
+            <source src="assets/Reg_2.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="container-form login ">
+        <div class="information">
+            <div class="info-childs">
+                <a href="index.html">
+                    <img src="/assets/logo.jpeg" alt="Logo" class="logo">
+                </a>
+                <h2>Bienvenido de nuevo</h2>
+                <p>Si aun no tienes una cuenta por favor registrarte aqui</p>
+                <input type="button" value="Registrarse" id="sign-up">
+            </div>
+        </div>
+        <div class="form-information">
+            <div class="form-information-childs">
+                <h2>Iniciar Sesión</h2>
+                <!-- Contenido existente -->
+                <form class="form" id="login-form">
+                    <label>
+                        <i class='bx bx-envelope'></i>
+                        <input type="email" id="email" placeholder="Correo Electrónico">
+                    </label>
+                    <label>
+                        <i class='bx bx-lock-alt'></i>
+                        <input type="password" id="password" placeholder="Contraseña">
+                    </label>
+                    <input type="submit" value="Iniciar Sesión">
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Políticas de privacidad | Términos y condiciones</p>
+    </footer>
+    <script>
+        document.getElementById("sign-up").addEventListener("click", function() {
+            window.location.href = "Registro.html";
+        });
+
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    localStorage.setItem('userName', data.userName); // Guardar el nombre del usuario en localStorage
+                    swal("¡Bienvenido!", "Has iniciado sesión con éxito.", "success")
+                    .then(() => {
+                        window.location.href = '/Index.html';
+                    });
+                } else {
+                    swal("Error", "Correo electrónico o contraseña incorrectos.", "error");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                swal("Error", "Error al intentar iniciar sesión.", "error");
+            });
+        });
+    </script>
+</body>
+</html>

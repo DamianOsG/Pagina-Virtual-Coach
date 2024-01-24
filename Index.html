@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Coach Homepage</title>
+    <link rel="stylesheet" href="css/Index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="/assets/logo.jpeg" alt="Logo"></a>
+            </div>
+            <ul>
+                <li><a href="Nosotros.html">Nosotros</a></li>
+                <li><a href="Cuenta.html">Cuenta</a></li>
+                <li><a href="Dieta.html">Dietas</a></li>
+                <li><a href="Rutina.html">Rutinas</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="video-background">
+            <video autoplay loop muted>
+                <source src="assets/Reg_3.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+        <div class="start-button" id="welcome-area">
+            <a href="Inicio.html" id="welcome-link">¡Comenzar Ya!</a>
+        </div>
+    </main>
+    <footer>
+        <p>Políticas de privacidad | Términos y condiciones</p>
+    </footer>
+    <script>
+        window.onload = () => {
+            fetch('/session-status')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.loggedIn) {
+                        document.getElementById('welcome-link').innerHTML = `Bienvenid@ <br> ${data.userName}`;
+                        document.getElementById('welcome-link').href = 'Cuenta.html';
+                    } else {
+                        // El usuario no ha iniciado sesión
+                        document.getElementById('welcome-link').textContent = '¡Comenzar Ya!';
+                        document.getElementById('welcome-link').href = 'Inicio.html';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        };
+    </script>
+</body>
+</html>

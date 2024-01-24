@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Coach - Mi Cuenta</title>
+    <link rel="stylesheet" href="css/Cuenta.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="/assets/logo.jpeg" alt="Logo"></a>
+            </div>
+            <ul>
+                <li><a href="Nosotros.html">Nosotros</a></li>
+                <li><a href="Cuenta.html">Cuenta</a></li>
+                <li><a href="Dieta.html">Dietas</a></li>
+                <li><a href="Rutinas.html">Rutinas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="video-background">
+            <video autoplay loop muted>
+                <source src="assets/Reg_6.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+        <div class="account-container">
+            <h1>Mi Cuenta</h1>
+            <div id="user-info">
+                <!-- Información del usuario aquí -->
+            </div>
+            <button id="logout-button">Cerrar Sesión</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>Políticas de privacidad | Términos y condiciones</p>
+    </footer>
+
+    <script src="js/Cuenta.js"></script>
+</body>
+</html>

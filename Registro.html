@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/Registro.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Registro de Usuario</title>
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay loop muted>
+            <source src="assets/Reg_1.mp4" type="video/mp4" />
+        </video>
+    </div>
+    <div class="container-form register">
+        <div class="information">
+            <div class="info-childs">
+                <a href="index.html">
+                    <img src="/assets/logo.jpeg" alt="Logo" class="logo" />
+                </a>
+                <h2>Bienvenidos</h2>
+                <p>Para unirte a nuestra comunidad por favor Inicia Sesión con tus datos</p>
+                <input type="button" value="Iniciar Sesión" id="sign-in" />
+            </div>
+        </div>
+        <div class="form-information">
+            <div class="form-information-childs">
+                <h2>Crear una Cuenta</h2>
+                <form class="form" action="/register" method="post" id="registration-form">
+                    <label>
+                        <i class="bx bx-user"></i>
+                        <input type="text" name="name" placeholder="Nombre Completo" required />
+                    </label>
+                    <label>
+                        <i class="bx bx-envelope"></i>
+                        <input type="email" name="email" placeholder="Correo Electrónico" required />
+                    </label>
+                    <label>
+                        <i class="bx bx-lock-alt"></i>
+                        <input type="password" name="password" placeholder="Contraseña" required />
+                    </label>
+                    <input type="submit" value="Registrarse" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Políticas de privacidad | Términos y condiciones</p>
+    </footer>
+    <script>
+        document.getElementById("sign-in").addEventListener("click", function () {
+            window.location.href = "Inicio.html";
+        });
+    
+        document.getElementById("registration-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const jsonFormData = Object.fromEntries(formData.entries());
+    
+            fetch(form.action, {
+                method: form.method,
+                body: JSON.stringify(jsonFormData),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data.error) {
+                    if (data.error === 'user_already_exists') {
+                        swal("Error", "Este correo electrónico ya está registrado.", "error");
+                    } else {
+                        swal("Error", "Hubo un error en el registro.", "error");
+                    }
+                } else {
+                    swal("¡Éxito!", "Registro completado con éxito.", "success")
+                    .then(() => {
+                        window.location.href = "Inicio.html";
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error('Error al procesar el formulario:', error);
+                swal("Error", "Hubo un error al registrar", "error");
+            });
+        });
+    </script>
+</body>
+</html>
